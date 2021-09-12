@@ -61,15 +61,33 @@ function validateCred(creditCardNumArray) {
 
     //add back the last digit in the credit number
     sum += creditCardNumArray[creditCardNumArray.length - 1];
-    
+
     return sum % 10 === 0;
 
 }
 
+//check for invalid cards in an array of cards and output them
+function findInvalidCards(creditCards) {
 
-for (let i = 0; i < batch.length; i++) {
-    console.log(validateCred(batch[i]));
+    //create invalidCards array
+    let invalidCards = [];
+
+    //iterate through creditCards and check if they are valid
+    for (let i = 0; i < creditCards.length; i++) {
+
+        //if the credit card is not valid, push the creditcard to the array
+        if (validateCred(creditCards[i]) === false) {
+
+            invalidCards.push(creditCards[i]);
+
+        }
+
+    }
+
+    return invalidCards;
 }
+
+
 
 
 
