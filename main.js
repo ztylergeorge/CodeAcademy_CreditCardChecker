@@ -25,6 +25,54 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 
+//validate credit card using Luhn algorithm
+function validateCred(creditCardNumArray) {
+
+    //default values for sum and check value
+    let sum = 0;
+    let check = 0;
+
+    //if credit card has 15 digits, make the check value 1
+    if (creditCardNumArray.length === 15) {
+
+        check = 1;
+    }
+
+    //iterate through the credit number, starting with the second to last number
+    for (let i = creditCardNumArray.length - 2; i >= 0; i--) {
+
+        let value = creditCardNumArray[i];
+        
+        //if the index of the value is odd or even, double value and subtract 9 as needed
+        if (i % 2 === check) {
+
+            value = value * 2;
+
+            if (value > 9) {
+                value = value - 9;
+            }
+
+        }
+        
+        //sum the values
+        sum += value;
+
+    }
+
+    //add back the last digit in the credit number
+    sum += creditCardNumArray[creditCardNumArray.length - 1];
+    
+    return sum % 10 === 0;
+
+}
+
+
+for (let i = 0; i < batch.length; i++) {
+    console.log(validateCred(batch[i]));
+}
+
+
+
 
 
 
