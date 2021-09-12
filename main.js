@@ -87,6 +87,47 @@ function findInvalidCards(creditCards) {
     return invalidCards;
 }
 
+//output invalid companies associated with invalid companies
+function idInvalidCardCompanies(invalidCards) {
+
+    //create invalidComps array
+    let invalidComps = [];
+
+    //iterate through invalidCards and get first digit to determine company
+    for (let i = 0; i < invalidCards.length; i++) {
+
+        let invalidCompany = invalidCards[i];
+        let compDigit = invalidCompany[0];
+
+        //switch the compDigit to push the value
+        let company = '';
+
+        switch(compDigit) {
+            case 3:
+                company = "American Express (AMEX)";
+                break;
+            case 4:
+                company = "Visa";
+                break;
+            case 5:
+                company = "Mastercard";
+                break;
+            case 6:
+                company = "Discover";
+                break;
+            default:
+                company = "Company not found";
+                break;
+        }
+
+        //push value if not in array
+        if (invalidComps.indexOf(company) === -1) {
+            invalidComps.push(company);
+        }
+    }
+
+    return invalidComps;
+}
 
 
 
