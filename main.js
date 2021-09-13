@@ -25,6 +25,19 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 
+//convert credit card string to number
+function creditCardStringToArray(creditCardString) {
+
+    let creditCardArray = [];
+
+    for (let i = 0; i < creditCardString.length; i++) {
+        creditCardArray.push(creditCardString[i]);
+    }
+
+    return creditCardArray;
+
+}
+
 //validate credit card using Luhn algorithm
 function validateCred(creditCardNumArray) {
 
@@ -128,7 +141,6 @@ function idInvalidCardCompanies(invalidCards) {
 
     return invalidComps;
 }
-
 
 
 
