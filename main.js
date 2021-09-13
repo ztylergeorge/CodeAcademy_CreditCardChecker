@@ -31,7 +31,7 @@ function creditCardStringToArray(creditCardString) {
     let creditCardArray = [];
 
     for (let i = 0; i < creditCardString.length; i++) {
-        creditCardArray.push(creditCardString[i]);
+        creditCardArray.push(parseInt(creditCardString[i]));
     }
 
     return creditCardArray;
@@ -142,8 +142,52 @@ function idInvalidCardCompanies(invalidCards) {
     return invalidComps;
 }
 
+//corrects card number to make it valid
+function correctCardNumber(creditCardNumArray) {
 
+    //default values for sum and check value
+    let sum = 0;
+    let check = 0;
 
+    //if credit card has 15 digits, make the check value 1
+    if (creditCardNumArray.length === 15) {
+
+        check = 1;
+    }
+
+    //iterate through the credit number, starting with the second to last number
+    for (let i = creditCardNumArray.length - 2; i >= 0; i--) {
+
+        let value = creditCardNumArray[i];
+        
+        //if the index of the value is odd or even, double value and subtract 9 as needed
+        if (i % 2 === check) {
+
+            value = value * 2;
+
+            if (value > 9) {
+                value = value - 9;
+            }
+
+        }
+        
+        //sum the values
+        sum += value;
+
+    }
+
+    //add back the last digit in the credit number
+    sum += creditCardNumArray[creditCardNumArray.length - 1];
+
+    //find modulo
+    let remainder = sum % 10;
+
+    //adjust last value
+    creditCardNumArray[creditCardNumArray.length - 1] = creditCardNumArray[creditCardNumArray.length - 1] - remainder;
+
+    return creditCardNumArray;
+
+}
 
 
 
